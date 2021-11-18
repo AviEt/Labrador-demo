@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'route_generator.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,11 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Route demo',
-        theme: ThemeData (
-          primarySwatch: Colors.blue,
-        ),
-        home: FirstPage(),
+      title: 'Route demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: FirstPage(),
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
@@ -24,29 +26,26 @@ class FirstPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Routing App'),
       ),
-      body: Center (
-        child: Column (
-          mainAxisSize: MainAxisSize.min,
-          children:  <Widget>[
-            const Text(
-                'First Page',
-                style: TextStyle(fontSize: 50)
-            ),
-            ElevatedButton(
-                child: Text('Go to second'),
-                onPressed: () {
-                  Navigator.of(context).push (
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          SecondPage(data: 'Hello there from the first page!'),
-                    ),
-                  );
-                }
-            )
-          ],
-        )
-      )
-    );
+      body: Center(
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+          const Text(
+          'First Page',
+              style: TextStyle(fontSize: 50)
+          ),
+          ElevatedButton(
+            child: Text('Go to second'),
+            onPressed: () {
+              // Pushing a named route
+              Navigator.of(context).pushNamed(
+                '/second',
+                arguments: 'Hello there from the first page!',
+              );
+            },
+          )
+      ],
+    )));
   }
 }
 
