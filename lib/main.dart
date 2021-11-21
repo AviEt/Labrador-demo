@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'route_generator.dart';
+import 'package:camera/camera.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Obtain a list of the available cameras on the device.
+  final cameras = await availableCameras();
+  runApp(MyApp(cameras: cameras));
 }
 
 class MyApp extends StatelessWidget {
+
+  final List<CameraDescription> cameras;
+  const MyApp({Key? key, required this.cameras}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,13 +21,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FirstPage(),
+      home: FirstPage(cameras: cameras),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
 
 class FirstPage extends StatelessWidget {
+  final List<CameraDescription> cameras;
+  const FirstPage({
+    Key? key,
+    required this.cameras,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +54,7 @@ class FirstPage extends StatelessWidget {
               // Pushing a named route
               Navigator.of(context).pushNamed(
                 '/second',
-                arguments: 'Hello there from the first page!',
+                arguments: cameras,
               );
             },
           )
