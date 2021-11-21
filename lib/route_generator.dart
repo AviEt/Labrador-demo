@@ -4,7 +4,7 @@ import 'main.dart';
 import 'package:camera/camera.dart';
 
 class RouteGenerator {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
+  static Route<dynamic> generateRoute(RouteSettings settings)  {
     // Getting arguments passed in while calling Navigator.pushNamed
     final args = settings.arguments;
 
@@ -12,12 +12,7 @@ class RouteGenerator {
       // case '/':
       //   return MaterialPageRoute(builder: (_) => FirstPage());
       case '/second':
-        if (args is List<CameraDescription>) {
-          return MaterialPageRoute(
-              builder: (_) => CardCameraScreen(cameras: args)
-          );
-        }
-        return _errorRoute();
+        return MaterialPageRoute(builder: (_) => CardCameraScreen());
 
       // case '/second':
       // // Validation of correct data type
@@ -32,7 +27,7 @@ class RouteGenerator {
       //   // You can also throw an exception while in development.
       //   return _errorRoute();
       default:
-      // If there is no such named route in the switch statement, e.g. /third
+        // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
     }
   }

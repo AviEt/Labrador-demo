@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:route_experiments/camera_singleton.dart';
 import 'route_generator.dart';
+import 'camera_singleton.dart';
 import 'package:camera/camera.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Obtain a list of the available cameras on the device.
   final cameras = await availableCameras();
-  runApp(MyApp(cameras: cameras));
+  CameraSingleton.cameras = cameras;
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
-  final List<CameraDescription> cameras;
-  const MyApp({Key? key, required this.cameras}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +21,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FirstPage(cameras: cameras),
+      home: FirstPage(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
 
 class FirstPage extends StatelessWidget {
-  final List<CameraDescription> cameras;
-  const FirstPage({
-    Key? key,
-    required this.cameras,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +48,6 @@ class FirstPage extends StatelessWidget {
               // Pushing a named route
               Navigator.of(context).pushNamed(
                 '/second',
-                arguments: cameras,
               );
             },
           )

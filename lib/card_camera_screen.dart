@@ -1,36 +1,32 @@
 import 'dart:io';
-
+import 'camera_singleton.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class CardCameraScreen extends StatefulWidget {
-  final List<CameraDescription> cameras;
-  const CardCameraScreen({
-    Key? key,
-    required this.cameras,
-  }) : super(key: key);
-
   @override
   _CardCameraScreenState createState() => _CardCameraScreenState();
 }
 
 class _CardCameraScreenState extends State<CardCameraScreen> {
+
+  late CameraController _controller; //To control the camera
+  late Future<void> _initializeControllerFuture; //Future to wait until camera initializes
+  int selectedCamera = 0;
+  List<File> capturedImages = [];
+
   @override
   void initState() {
+    WidgetsFlutterBinding.ensureInitialized();
+
     initializeCamera(selectedCamera); //Initially selectedCamera = 0
     super.initState();
   }
 
-  late CameraController _controller; //To control the camera
-  late Future<void>
-  _initializeControllerFuture; //Future to wait until camera initializes
-  int selectedCamera = 0;
-  List<File> capturedImages = [];
-
   initializeCamera(int cameraIndex) async {
     _controller = CameraController(
       // Get a specific camera from the list of available cameras.
-      widget.cameras[cameraIndex],
+      CameraSingleton.cameras[cameraIndex],
       // Define the resolution to use.
       ResolutionPreset.medium,
     );
@@ -72,7 +68,7 @@ class _CardCameraScreenState extends State<CardCameraScreen> {
               children: [
                 IconButton(
                   onPressed: () {
-                    if (widget.cameras.length > 1) {
+                    if (CameraSingleton.cameras.length > 1) {
                       setState(() {
                         selectedCamera = selectedCamera == 0 ? 1 : 0;
                         initializeCamera(selectedCamera);
