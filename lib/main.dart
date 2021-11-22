@@ -3,6 +3,7 @@ import 'package:route_experiments/camera_singleton.dart';
 import 'route_generator.dart';
 import 'camera_singleton.dart';
 import 'package:camera/camera.dart';
+import 'home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,35 +25,6 @@ class MyApp extends StatelessWidget {
       home: FirstPage(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
-  }
-}
-
-class FirstPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Routing App'),
-      ),
-      body: Center(
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-          const Text(
-          'First Page',
-              style: TextStyle(fontSize: 50)
-          ),
-          ElevatedButton(
-            child: Text('Go to second'),
-            onPressed: () {
-              // Pushing a named route
-              Navigator.of(context).pushNamed(
-                '/second',
-              );
-            },
-          )
-      ],
-    )));
   }
 }
 

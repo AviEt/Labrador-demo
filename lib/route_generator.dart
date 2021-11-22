@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:route_experiments/card_camera_screen.dart';
-import 'main.dart';
-import 'package:camera/camera.dart';
+import 'home.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings)  {
@@ -9,10 +8,12 @@ class RouteGenerator {
     final args = settings.arguments;
 
     switch (settings.name) {
-      // case '/':
-      //   return MaterialPageRoute(builder: (_) => FirstPage());
+      case '/':
+        return MaterialPageRoute(builder: (_) => FirstPage());
       case '/second':
         return MaterialPageRoute(builder: (_) => CardCameraScreen());
+      case '/results':
+        return MaterialPageRoute(builder: (_) => FirstPage());
 
       // case '/second':
       // // Validation of correct data type

@@ -94,6 +94,9 @@ class _CardCameraScreenState extends State<CardCameraScreen> {
                       await ImageGallerySaver.saveFile(xFile.path,
                           isReturnPathOfIOS: true);
                     }
+                    Navigator.of(context).pushNamed(
+                      '/results',
+                    );
                   },
                   child: Container(
                     height: 60,
