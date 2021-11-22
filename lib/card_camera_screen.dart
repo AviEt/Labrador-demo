@@ -2,6 +2,7 @@ import 'dart:io';
 import 'camera_singleton.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class CardCameraScreen extends StatefulWidget {
   @override
@@ -89,10 +90,10 @@ class _CardCameraScreenState extends State<CardCameraScreen> {
                     setState(() {
                       capturedImages.add(File(xFile.path));
                     });
-                    // if (Platform.isIOS) {
-                    //   await ImageGallerySaver.saveFile(xFile.path,
-                    //       isReturnPathOfIOS: true);
-                    // }
+                    if (Platform.isIOS) {
+                      await ImageGallerySaver.saveFile(xFile.path,
+                          isReturnPathOfIOS: true);
+                    }
                   },
                   child: Container(
                     height: 60,
