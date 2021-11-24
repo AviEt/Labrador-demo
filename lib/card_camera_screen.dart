@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class CardCameraScreen extends StatefulWidget {
+  const CardCameraScreen({Key? key}) : super(key: key);
+
   @override
   _CardCameraScreenState createState() => _CardCameraScreenState();
 }
 
 class _CardCameraScreenState extends State<CardCameraScreen> {
-
   late CameraController _controller; //To control the camera
-  late Future<void> _initializeControllerFuture; //Future to wait until camera initializes
+  late Future<void>
+      _initializeControllerFuture; //Future to wait until camera initializes
   int selectedCamera = 0;
   List<File> capturedImages = [];
 
@@ -61,7 +63,7 @@ class _CardCameraScreenState extends State<CardCameraScreen> {
               }
             },
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -111,7 +113,7 @@ class _CardCameraScreenState extends State<CardCameraScreen> {
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );
