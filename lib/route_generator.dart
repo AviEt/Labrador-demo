@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:route_experiments/card_camera_screen.dart';
-import 'home.dart';
+import 'welcome_screen.dart';
+import 'results_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings)  {
@@ -9,11 +10,11 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => FirstPage());
+        return MaterialPageRoute(builder: (_) => WelcomeScreen());
       case '/second':
         return MaterialPageRoute(builder: (_) => CardCameraScreen());
       case '/results':
-        return MaterialPageRoute(builder: (_) => FirstPage());
+        return MaterialPageRoute(builder: (_) => ResultsScreen(data: "Results are ready"));
 
       // case '/second':
       // // Validation of correct data type
@@ -37,10 +38,10 @@ class RouteGenerator {
     return MaterialPageRoute(builder: (_) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Error'),
+          title: const Text('Error'),
         ),
         body: Center(
-          child: Text('ERROR'),
+          child: const Text('ERROR'),
         ),
       );
     });
