@@ -3,7 +3,7 @@ import 'package:route_experiments/camera_singleton.dart';
 import 'route_generator.dart';
 import 'camera_singleton.dart';
 import 'package:camera/camera.dart';
-import 'welcome_screen.dart';
+import 'regular_step_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WelcomeScreen(),
+      home: RegularStepScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
