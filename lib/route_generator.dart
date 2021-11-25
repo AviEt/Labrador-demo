@@ -12,12 +12,14 @@ class RouteGenerator {
     final args = settings.arguments;
 
     switch (settings.name) {
-      case homePageUrl:
-        return MaterialPageRoute(builder: (_) => const RegularStepScreen());
+      case spitToCupUrl:
+        return MaterialPageRoute(builder: (_) => RegularStepScreen(screenData: spitToCupScreenData,));
+      case attachCupToKitUrl:
+        return MaterialPageRoute(builder: (_) => RegularStepScreen(screenData: attachCupToKitScreenData,));
       case cameraPageUrl:
         return MaterialPageRoute(builder: (_) => const CardCameraScreen());
       case resultsPageUrl:
-        return MaterialPageRoute(builder: (_) => const ResultsScreen(data: "Results are ready"));
+        return MaterialPageRoute(builder: (_) => const ResultsScreen());
       case waitResultsPageUrl:
         return MaterialPageRoute(builder: (_) => const SampleWaitScreen());
       default:

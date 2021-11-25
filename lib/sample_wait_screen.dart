@@ -38,7 +38,7 @@ class _SampleWaitScreenState extends State<SampleWaitScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Timer App"),
+        title: const Text("Labrador"),
       ),
       body: Center(
         child: Column(

@@ -2,24 +2,39 @@ import 'package:flutter/material.dart';
 
 import 'consts.dart';
 
+class RegularScreenData {
+  final String message;
+  final String nextStepRoute;
+
+  RegularScreenData({required this.message, required this.nextStepRoute});
+}
+
+final RegularScreenData spitToCupScreenData = RegularScreenData(message: "Please spit into the designated cup",
+    nextStepRoute: attachCupToKitUrl);
+
+final RegularScreenData attachCupToKitScreenData = RegularScreenData(message: "Please attach the cup to the kit",
+    nextStepRoute: cameraPageUrl);
+
 class RegularStepScreen extends StatelessWidget {
-  const RegularStepScreen({Key? key}) : super(key: key);
+  final RegularScreenData screenData;
+
+  const RegularStepScreen({Key? key, required this.screenData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Routing App'),
+          title: const Text('Labrador'),
         ),
         body: Center(
             child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Padding(
+            Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                'Please spit into the designated cup',
+                screenData.message,
                 style: TextStyle(fontSize: 35),
                 textAlign: TextAlign.center,
               ),
@@ -33,7 +48,7 @@ class RegularStepScreen extends StatelessWidget {
                   onPressed: () {
                     // Pushing a named route
                     Navigator.of(context).pushNamed(
-                      cameraPageUrl,
+                      screenData.nextStepRoute,
                     );
                   },
                 )),

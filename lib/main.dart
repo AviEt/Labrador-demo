@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:route_experiments/camera_singleton.dart';
+import 'consts.dart';
 import 'route_generator.dart';
 import 'camera_singleton.dart';
 import 'package:camera/camera.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RegularStepScreen(),
+      home: RegularStepScreen(screenData: spitToCupScreenData),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
