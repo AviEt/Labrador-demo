@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:route_experiments/card_camera_screen.dart';
-import 'welcome_screen.dart';
-import 'results_screen.dart';
+import 'package:route_experiments/sample_wait_screen.dart';
+import 'package:route_experiments/welcome_screen.dart';
+import 'package:route_experiments/results_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings)  {
@@ -14,20 +15,9 @@ class RouteGenerator {
       case '/second':
         return MaterialPageRoute(builder: (_) => CardCameraScreen());
       case '/results':
-        return MaterialPageRoute(builder: (_) => ResultsScreen(data: "Results are ready"));
-
-      // case '/second':
-      // // Validation of correct data type
-      //   if (args is String) {
-      //     return MaterialPageRoute(
-      //       builder: (_) => SecondPage(
-      //         data: args,
-      //       ),
-      //     );
-      //   }
-      //   // If args is not of the correct type, return an error page.
-      //   // You can also throw an exception while in development.
-      //   return _errorRoute();
+        return MaterialPageRoute(builder: (_) => const ResultsScreen(data: "Results are ready"));
+      case '/sample_wait':
+        return MaterialPageRoute(builder: (_) => SampleWaitScreen());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
@@ -40,8 +30,8 @@ class RouteGenerator {
         appBar: AppBar(
           title: const Text('Error'),
         ),
-        body: Center(
-          child: const Text('ERROR'),
+        body: const Center(
+          child: Text('ERROR'),
         ),
       );
     });

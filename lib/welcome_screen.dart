@@ -22,7 +22,7 @@ class WelcomeScreen extends StatelessWidget {
                   onPressed: () {
                     // Pushing a named route
                     Navigator.of(context).pushNamed(
-                      '/second',
+                      '/sample_wait',
                     );
                   },
                 )
