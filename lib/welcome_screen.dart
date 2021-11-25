@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'consts.dart';
+
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
@@ -22,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
                   onPressed: () {
                     // Pushing a named route
                     Navigator.of(context).pushNamed(
-                      '/sample_wait',
+                      cameraPageUrl,
                     );
                   },
                 )

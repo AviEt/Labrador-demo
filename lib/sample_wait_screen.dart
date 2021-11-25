@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'consts.dart';
+
 class SampleWaitScreen extends StatefulWidget {
   const SampleWaitScreen({Key? key}) : super(key: key);
 
@@ -11,20 +13,22 @@ class SampleWaitScreen extends StatefulWidget {
 }
 
 class _SampleWaitScreenState extends State<SampleWaitScreen> {
-  int _counter = 10;
+  int _counter = 3;
   Timer? _timer;
 
-  void _startTimer() {
-    _counter = 10;
-    if (_timer != null) {
-      _timer!.cancel();
-    }
+  @override
+  void initState() {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         if (_counter > 0) {
           _counter--;
         } else {
           _timer!.cancel();
+          Future.delayed(Duration(milliseconds: 1500), () {
+            Navigator.of(context).pushNamed(
+              resultsPageUrl,
+            );
+          });
         }
       });
     });
@@ -57,10 +61,10 @@ class _SampleWaitScreenState extends State<SampleWaitScreen> {
                 fontSize: 48,
               ),
             ),
-            ElevatedButton (
-              onPressed: () => _startTimer(),
-              child: Text("Start 10 second count down"),
-            ),
+            // ElevatedButton (
+            //   onPressed: () => _startTimer(),
+            //   child: Text("Start 10 second count down"),
+            // ),
           ],
         ),
       ),

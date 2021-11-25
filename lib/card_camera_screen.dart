@@ -4,6 +4,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
+import 'consts.dart';
+
 class CardCameraScreen extends StatefulWidget {
   const CardCameraScreen({Key? key}) : super(key: key);
 
@@ -97,7 +99,7 @@ class _CardCameraScreenState extends State<CardCameraScreen> {
                           isReturnPathOfIOS: true);
                     }
                     Navigator.of(context).pushNamed(
-                      '/results',
+                      waitResultsPageUrl,
                     );
                   },
                   child: Container(
